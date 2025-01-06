@@ -357,7 +357,7 @@ $Setglobal HYDROGEN YES
 *!option yes
 
 * Allows investments in hydrogen transport
-$Setglobal H2TransInvest YES
+$Setglobal H2TransInvest yes
 *!option yes
 
 SCALAR XH2INVESTSTART 'Year from which endogenous decisions in H2 transmission capacities are allowed' ;
@@ -823,9 +823,14 @@ $setglobal ADDGROUP_DEMAND_SHIFT
 *--------------------END OF INDIVIDUAL USERS-----------------------------------------------------------
 
 *--------------------ENERGY SOVEREIGNTY----------------------------------------------------------------
-*Specified group of regions is aggregate net neutral or net exporter of specified energy carriers
+*Specified group of regions is aggregate net neutral or net exporter of specified energy carriers (default: electricity)
 $setglobal SOVEREIGNTY yes
 *!option yes
+
+*Sovereignty requirement for hydrogen energy carrier
+$setglobal SOV_H2 yes
+*! option yes
+*! requires Hydrogen addon and %H2TransInvest%==yes
 
 *Group of sovereign regions may be net exporter
 $setglobal SOV_NET_EXP
@@ -836,7 +841,6 @@ $setglobal SOV_TIME_RES T_Sov
 *! option Y_Sov
 *! option S_Sov
 *! option T_Sov
-
 
 *--------------------END OF SOVEREIGNTY-----------------------------------------------------------
 
