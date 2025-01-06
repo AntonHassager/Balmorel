@@ -21,6 +21,7 @@ $ifi %FlowBased%==yes      $include        "../../base/addons/FlowBased/bb4/flow
 $ifi %HEATTRANS%==yes       $include   "../../base/addons/heattrans/bb4/heattrans_ipardecdef.inc";
 $ifi %DECOM%==yes  $include   "../../base/addons/DECOM/DECOM_ipardecdef.inc";
 $ifi %BalancingMarket%==yes       $include   "../../base/addons/balancing_market/balancing_market_ipardecdef.inc";
+$ifi %SOVEREIGNTY%==yes  $include   "../../base/addons/sovereignty/bb4/sovereignty_ipardecdef.inc";
 
 $label endoffile
 

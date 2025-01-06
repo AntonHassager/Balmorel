@@ -822,6 +822,24 @@ $setglobal ADDGROUP_DEMAND_SHIFT
 *!option yes
 *--------------------END OF INDIVIDUAL USERS-----------------------------------------------------------
 
+*--------------------ENERGY SOVEREIGNTY----------------------------------------------------------------
+*Specified group of regions is aggregate net neutral or net exporter of specified energy carriers
+$setglobal SOVEREIGNTY yes
+*!option yes
+
+*Group of sovereign regions may be net exporter
+$setglobal SOV_NET_EXP
+*! option yes
+
+*Temporal resolution of sovereignty requirement
+$setglobal SOV_TIME_RES T_Sov
+*! option Y_Sov
+*! option S_Sov
+*! option T_Sov
+
+
+*--------------------END OF SOVEREIGNTY-----------------------------------------------------------
+
 
 *------------- END OF IMPORT OPTIONS ----------------
 *--------------------------------------------
