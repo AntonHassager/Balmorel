@@ -56,6 +56,10 @@ $ifi %inv%==yes  EQUATION QPROCKAUP_SCALE1(Y,AAA,PROC)   "Equation for modelling
 $ifi %inv%==yes  EQUATION QPROCKAUP_SCALE2(Y,AAA,PROC)   "Equation for modelling economy of scale of new investments"  ;
 $ifi %inv%==yes  EQUATION QPROCKAP_DEC(Y,AAA,IPROCFROM,IPROCTO,FLOW,S,T) "Equation for modelling of decomissioning plants";
 
+* OBS FF
+$ifi %inv%==yes  EQUATION QTRANSPROCKAP                 'Capacity constraint on transport processes (U/h)';
+$ifi %inv%==yes  EQUATION QTRANSPROCKAP_SYMMETRY        'Transport capcity investments are symmetric';
+
 
 
 * Flows from SOSIBU and EXIM in units [U/h] are indic-weighted, time-weighted and summarized.
@@ -470,7 +474,34 @@ QPROCKAP_UP(IY411,IA,IPROCFROM,IPROCTO,FLOW,S,T)$(
  + VPROCKAPACCUMNET(IY411,IA,IPROCTO)$(SUM(Y$(YVALUE(Y) LE YVALUE(IY411)),IAPROCKAPNEW(Y,IA,IPROCTO)) AND (IPROCKAPDATA(IY411,IPROCTO,FLOW,'IFLOWINOUT_IN')))
 ;
 
-*FLOWFROMTOPROC(IY411,IA,IPROCFROM2,IPROCTO,FLOW) AND 
+* OBS FF
+* Conditional for where the equation is applied:
+* - IPROCKAPDATA requires a capacity, either based on the outgoing or incoming flow.
+* - Process is defined in PROCEXIM (transport process).
+* - Flow is defined in IFLOWEXIM (transport flow).
+* - There is a defined transport connection ITRANSFROMTOPROC using the process PROC connecting the areas IAE and IAI.
+
+* OBS FF notes: Equation is not working on any set right now. Maybe add 'Pipeline' as iflowinout in IPROCKAPDATA. Or something else
+
+QTRANSPROCKAP(IY411,IAE,IAI,IPROC,S,T)$(ITRANSFROMTOPROC(IPROC,IAE,IAI) AND PROCEXIM(IPROC) AND SUM(FLOW$(IFLOWEXIM(FLOW)), IPROCKAPDATA(IY411,IPROC,FLOW,'PIPELINE')))..
+
+   SUM(FLOW$(IFLOWEXIM(FLOW) AND IPROCKAPDATA(IY411,IPROC,FLOW,'PIPELINE')), VFLOWTRANS(IY411,IAE,IAI,IPROC,FLOW,S,T))
+  
+  =L=
+
+   VTRANSPROCKAPNEW(IY411,IAE,IAI,IPROC)
+;
+
+
+QTRANSPROCKAP_SYMMETRY(IY411,IAE,IAI,IPROC)$(ITRANSFROMTOPROC(IPROC,IAE,IAI) AND PROCEXIM(IPROC) AND SUM(FLOW$(IFLOWEXIM(FLOW)), IPROCKAPDATA(IY411,IPROC,FLOW,'PIPELINE')))..
+
+  VTRANSPROCKAPNEW(IY411,IAE,IAI,IPROC)
+
+  =E=
+
+  VTRANSPROCKAPNEW(IY411,IAI,IAE,IPROC)
+;
+
 
 QPROCKAUP_SCALE1(IY411,IA,PROC)$(IAPROCKAPNEW(IY411,IA,PROC) AND PROCKAPNEWSCALE(PROC))..
    VPROCKAPNEW(IY411,IA,PROC)=G=PROCKAPNEWSCALE(PROC)*VPROCKAPNEWSCALE_U(IY411,IA,PROC);

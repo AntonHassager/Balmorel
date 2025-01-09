@@ -230,7 +230,7 @@ $if not EXIST '../data/OPTIFLOW_PROCDATA.inc' $INCLUDE '../../base/data/OPTIFLOW
 * The PROC can have only one Flow Bundle. ASSUMPTION   NOT ANYMORE NEEDED
 * Capacity cannot be given for entering Flow with IMANYONE in PROCINOUTFLOW nor for leaving Flow with IONEMANY.
 
-SET IFLOWINOUT "Specifies for PROCKAPFX that if the capacity of Proc (index 3) is set as a bound on entering/leaving Flow from/to Proc (index 4)" / IFLOWINOUT_IN, IFLOWINOUT_OUT /;
+SET IFLOWINOUT "Specifies for PROCKAPFX that if the capacity of Proc (index 3) is set as a bound on entering/leaving Flow from/to Proc (index 4)" / IFLOWINOUT_IN, IFLOWINOUT_OUT, PIPELINE /;
 
 
 SET  PROCKAPDATA(YYY,PROC,FLOW,IFLOWINOUT)    "Process addons/OptiFlow/data: capacity relative to FLOW and in/out direction"  %semislash%

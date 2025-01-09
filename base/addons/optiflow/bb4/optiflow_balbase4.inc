@@ -37,4 +37,10 @@ $ifi %inv%==yes       QPROCKAUP_SCALE1
 $ifi %inv%==yes       QPROCKAUP_SCALE2
 $ifi %inv%==yes       QPROCKAP_DEC
 
+*OBS FF
+$ifi %inv%==yes       QTRANSPROCKAP
+$ifi %inv%==yes       QTRANSPROCKAP_SYMMETRY  
+
 $ifi %APKNDISC%==yes  QAPKNDISCEQUALCONT
+
+
