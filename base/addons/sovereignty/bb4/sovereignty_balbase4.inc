@@ -3,3 +3,5 @@ $ifi %TransInvest%==yes QX_SOVBALANCE
 
 $ifi %SOV_H2%==yes QXH2_SOVBALANCE
 
+$ifi %SOV_OPTIFLOW%==yes QOPTIFLOW_SOVBALANCE
+
